@@ -102,15 +102,6 @@ public class Sys extends SchemaImpl {
         super("sys", null);
     }
 
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Catalog getCatalog() {
-        return DefaultCatalog.DEFAULT_CATALOG;
-    }
-
     @Override
     public final List<Table<?>> getTables() {
         List result = new ArrayList();
