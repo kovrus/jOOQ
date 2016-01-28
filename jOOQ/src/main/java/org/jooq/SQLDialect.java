@@ -167,6 +167,11 @@ public enum SQLDialect {
      */
     SQLITE("SQLite", false),
 
+    /**
+     * The Crate.IO dialect.
+     */
+    CRATE("Crate.IO", false),
+
     // -------------------------------------------------------------------------
     // SQL dialects for commercial usage
     // -------------------------------------------------------------------------
@@ -517,6 +522,7 @@ public enum SQLDialect {
                 case MARIADB:
                 case MYSQL:     return "MySQL";
                 case POSTGRES:  return "PostgreSQL";
+                case CRATE:     return "Crate.IO";
 
                 default:        return null;
             }
@@ -569,6 +575,7 @@ public enum SQLDialect {
                 case POSTGRES_9_5:
                 case POSTGRES:      return "org.hibernate.dialect.PostgreSQL94Dialect";
                 case SQLITE:        return null;
+                case CRATE:         return null;
 
                 default:            return null;
             }
