@@ -40,26 +40,6 @@
  */
 package org.jooq.impl;
 
-import org.jooq.DataType;
-import org.jooq.Record;
-import org.jooq.Result;
-import org.jooq.types.DayToSecond;
-import org.jooq.types.UByte;
-import org.jooq.types.UInteger;
-import org.jooq.types.ULong;
-import org.jooq.types.UShort;
-import org.jooq.types.YearToMonth;
-import org.jooq.util.crate.CrateDataType;
-import org.jooq.util.cubrid.CUBRIDDataType;
-import org.jooq.util.derby.DerbyDataType;
-import org.jooq.util.firebird.FirebirdDataType;
-import org.jooq.util.h2.H2DataType;
-import org.jooq.util.hsqldb.HSQLDBDataType;
-import org.jooq.util.mariadb.MariaDBDataType;
-import org.jooq.util.mysql.MySQLDataType;
-import org.jooq.util.postgres.PostgresDataType;
-import org.jooq.util.sqlite.SQLiteDataType;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Date;
@@ -74,14 +54,32 @@ import java.time.OffsetDateTime;
 import java.time.OffsetTime;
 import java.util.UUID;
 
+import org.jooq.DataType;
+import org.jooq.Record;
+import org.jooq.Result;
+import org.jooq.types.DayToSecond;
+import org.jooq.types.UByte;
+import org.jooq.types.UInteger;
+import org.jooq.types.ULong;
+import org.jooq.types.UShort;
+import org.jooq.types.YearToMonth;
 // ...
 // ...
+import org.jooq.util.cubrid.CUBRIDDataType;
+// ...
+import org.jooq.util.derby.DerbyDataType;
+import org.jooq.util.firebird.FirebirdDataType;
+import org.jooq.util.h2.H2DataType;
+// ...
+import org.jooq.util.hsqldb.HSQLDBDataType;
 // ...
 // ...
+import org.jooq.util.mariadb.MariaDBDataType;
+import org.jooq.util.mysql.MySQLDataType;
 // ...
+import org.jooq.util.postgres.PostgresDataType;
 // ...
-// ...
-// ...
+import org.jooq.util.sqlite.SQLiteDataType;
 // ...
 // ...
 // ...
@@ -109,8 +107,6 @@ public final class SQLDataType {
      * The {@link Types#VARCHAR} type.
      */
     public static final DataType<String> VARCHAR = new DefaultDataType<String>(null, String.class, "varchar");
-
-    public static final DataType<String> STRING = new DefaultDataType<String>(null, String.class, "string");
 
     /**
      * The {@link Types#CHAR} type.
@@ -397,7 +393,7 @@ public final class SQLDataType {
 
 
 
-            Class.forName(CrateDataType.class.getName());
+
             Class.forName(CUBRIDDataType.class.getName());
             Class.forName(DerbyDataType.class.getName());
             Class.forName(FirebirdDataType.class.getName());
