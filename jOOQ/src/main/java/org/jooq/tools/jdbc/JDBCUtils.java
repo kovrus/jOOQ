@@ -60,6 +60,7 @@ import static org.jooq.SQLDialect.SQLITE;
 // ...
 // ...
 // ...
+import static org.jooq.SQLDialect.CRATE;
 
 import java.sql.Array;
 import java.sql.Blob;
@@ -142,6 +143,10 @@ public class JDBCUtils {
 
 
 
+        else if (url.startsWith("jdbc:crate:")
+                || url.startsWith("crate:")) {
+            return CRATE;
+        }
         else if (url.startsWith("jdbc:cubrid:")) {
             return CUBRID;
         }
@@ -216,6 +221,8 @@ public class JDBCUtils {
      */
     public static final String driver(String url) {
         switch (dialect(url).family()) {
+            case CRATE:
+                return "io.crate.client.jdbc.CrateDriver";
             case CUBRID:
                 return "cubrid.jdbc.driver.CUBRIDDriver";
             case DERBY:
