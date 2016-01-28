@@ -41,27 +41,6 @@
 
 package org.jooq.util;
 
-import static org.jooq.impl.DSL.falseCondition;
-import static org.jooq.util.AbstractTypedElementDefinition.customType;
-
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.math.BigInteger;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.regex.Pattern;
-
-import javax.xml.bind.JAXB;
-
 import org.jooq.Configuration;
 import org.jooq.DSLContext;
 import org.jooq.ExecuteContext;
@@ -85,6 +64,26 @@ import org.jooq.util.jaxb.EnumType;
 import org.jooq.util.jaxb.ForcedType;
 import org.jooq.util.jaxb.RegexFlag;
 import org.jooq.util.jaxb.Schema;
+
+import javax.xml.bind.JAXB;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.math.BigInteger;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.regex.Pattern;
+
+import static org.jooq.impl.DSL.falseCondition;
+import static org.jooq.util.AbstractTypedElementDefinition.customType;
 // ...
 
 /**
@@ -1332,6 +1331,8 @@ public abstract class AbstractDatabase implements Database {
                 // TODO: Is there any more robust way to recognise these?
                 // For instance, there could be a UDT that is called this way
                 return dataType.endsWith(" ARRAY");
+            case CRATE:
+                return dataType.endsWith("_array");
         }
 
         return false;

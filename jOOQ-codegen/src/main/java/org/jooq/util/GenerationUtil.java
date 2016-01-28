@@ -40,18 +40,19 @@
  */
 package org.jooq.util;
 
+import org.jooq.SQLDialect;
+import org.jooq.exception.SQLDialectNotSupportedException;
+import org.jooq.util.AbstractGenerator.Language;
+import org.jooq.util.h2.H2DataType;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableSet;
 import static org.jooq.util.AbstractGenerator.Language.JAVA;
 import static org.jooq.util.AbstractGenerator.Language.SCALA;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.jooq.SQLDialect;
-import org.jooq.exception.SQLDialectNotSupportedException;
-import org.jooq.util.AbstractGenerator.Language;
-import org.jooq.util.h2.H2DataType;
 
 /**
  * @author Lukas Eder
@@ -266,6 +267,11 @@ class GenerationUtil {
                 else {
                     return t.replace(" ARRAY", "");
                 }
+            }
+
+            case CRATE: {
+                // An array type in crate represented in following format {type}_array
+                return t.split("\\_")[0];
             }
         }
 
