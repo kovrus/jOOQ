@@ -25,13 +25,33 @@
 
 package org.jooq.util.crate;
 
-import org.jooq.*;
+import org.jooq.DSLContext;
+import org.jooq.Record;
+import org.jooq.Record4;
+import org.jooq.Result;
+import org.jooq.SQLDialect;
+import org.jooq.Schema;
+import org.jooq.Sequence;
 import org.jooq.impl.DSL;
-import org.jooq.util.*;
-import org.jooq.util.crate.information_schema.tables.Columns;
+import org.jooq.util.AbstractDatabase;
+import org.jooq.util.ArrayDefinition;
+import org.jooq.util.CatalogDefinition;
+import org.jooq.util.DataTypeDefinition;
+import org.jooq.util.DefaultDataTypeDefinition;
+import org.jooq.util.DefaultRelations;
+import org.jooq.util.DefaultSequenceDefinition;
+import org.jooq.util.DomainDefinition;
+import org.jooq.util.EnumDefinition;
+import org.jooq.util.PackageDefinition;
+import org.jooq.util.RoutineDefinition;
+import org.jooq.util.SchemaDefinition;
+import org.jooq.util.SequenceDefinition;
+import org.jooq.util.TableDefinition;
+import org.jooq.util.UDTDefinition;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.jooq.util.crate.information_schema.tables.Schemata.SCHEMATA;
@@ -170,37 +190,31 @@ public class CrateDatabase extends AbstractDatabase {
 
     @Override
     protected List<EnumDefinition> getEnums0() throws SQLException {
-        List<EnumDefinition> result = new ArrayList<EnumDefinition>();
-        return result;
+        return Collections.<EnumDefinition>emptyList();
     }
 
     @Override
     protected List<DomainDefinition> getDomains0() throws SQLException {
-        List<DomainDefinition> result = new ArrayList<DomainDefinition>();
-        return result;
+        return Collections.<DomainDefinition>emptyList();
     }
 
     @Override
     protected List<UDTDefinition> getUDTs0() throws SQLException {
-        List<UDTDefinition> result = new ArrayList<UDTDefinition>();
-        return result;
+        return Collections.<UDTDefinition>emptyList();
     }
 
     @Override
     protected List<ArrayDefinition> getArrays0() throws SQLException {
-        List<ArrayDefinition> result = new ArrayList<ArrayDefinition>();
-        return result;
+        return Collections.<ArrayDefinition>emptyList();
     }
 
     @Override
     protected List<RoutineDefinition> getRoutines0() throws SQLException {
-        List<RoutineDefinition> result = new ArrayList<RoutineDefinition>();
-        return result;
+        return Collections.<RoutineDefinition>emptyList();
     }
 
     @Override
     protected List<PackageDefinition> getPackages0() throws SQLException {
-        List<PackageDefinition> result = new ArrayList<PackageDefinition>();
-        return result;
+        return Collections.<PackageDefinition>emptyList();
     }
 }
