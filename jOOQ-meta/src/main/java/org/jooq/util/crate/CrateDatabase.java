@@ -1,42 +1,26 @@
 /**
  * Copyright (c) 2009-2015, Data Geekery GmbH (http://www.datageekery.com)
  * All rights reserved.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
+ * <p>
  * Other licenses:
  * -----------------------------------------------------------------------------
  * Commercial licenses for this work are available. These replace the above
  * ASL 2.0 and offer limited warranties, support, maintenance, and commercial
  * database integrations.
- *
+ * <p>
  * For more information, please visit: http://www.jooq.org/licenses
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 package org.jooq.util.crate;
@@ -44,6 +28,7 @@ package org.jooq.util.crate;
 import org.jooq.*;
 import org.jooq.impl.DSL;
 import org.jooq.util.*;
+import org.jooq.util.crate.information_schema.tables.Columns;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -51,8 +36,11 @@ import java.util.List;
 
 import static org.jooq.util.crate.information_schema.tables.Schemata.SCHEMATA;
 import static org.jooq.util.crate.information_schema.tables.Tables.TABLES;
+import static org.jooq.util.crate.information_schema.tables.TableConstraints.TABLE_CONSTRAINTS;
 
 public class CrateDatabase extends AbstractDatabase {
+
+    private static final String PRIMARY_KEY_CONSTRAINT = "PRIMARY_KEY";
 
     private List<Schema> schemas;
 
@@ -62,9 +50,22 @@ public class CrateDatabase extends AbstractDatabase {
     }
 
     @Override
-    protected void loadPrimaryKeys(DefaultRelations r) throws SQLException {
-    }
+    protected void loadPrimaryKeys(DefaultRelations relations) throws SQLException {
+        for (Record record : fetchKeys(PRIMARY_KEY_CONSTRAINT)) {
+            SchemaDefinition schema = getSchema(record.getValue(TABLE_CONSTRAINTS.SCHEMA_NAME));
+            String tableName = record.getValue(TABLE_CONSTRAINTS.TABLE_NAME);
+            String[] columns = record.getValue(TABLE_CONSTRAINTS.CONSTRAINT_NAME);
 
+            TableDefinition table = getTable(schema, tableName);
+            if (table != null) {
+                for (String column : columns) {
+                    if (!column.equals("_id")) {
+                        relations.addPrimaryKey(PRIMARY_KEY_CONSTRAINT, table.getColumn(column));
+                    }
+                }
+            }
+        }
+    }
 
     @Override
     protected void loadUniqueKeys(DefaultRelations relations) throws SQLException {
@@ -76,6 +77,18 @@ public class CrateDatabase extends AbstractDatabase {
 
     @Override
     protected void loadCheckConstraints(DefaultRelations r) throws SQLException {
+    }
+
+    private Result<Record4<String, String, String, String[]>> fetchKeys(String constraintType) {
+        return create().select(
+                TABLE_CONSTRAINTS.SCHEMA_NAME,
+                TABLE_CONSTRAINTS.TABLE_NAME,
+                TABLE_CONSTRAINTS.CONSTRAINT_TYPE,
+                TABLE_CONSTRAINTS.CONSTRAINT_NAME)
+                .from(TABLE_CONSTRAINTS)
+                .where(TABLE_CONSTRAINTS.SCHEMA_NAME.in(getInputSchemata()))
+                .and(TABLE_CONSTRAINTS.CONSTRAINT_TYPE.equal(constraintType))
+                .fetch();
     }
 
     @Override
@@ -119,13 +132,13 @@ public class CrateDatabase extends AbstractDatabase {
                 SchemaDefinition sd = getSchema(schema.getName());
 
                 DataTypeDefinition type = new DefaultDataTypeDefinition(
-                    this,
-                    sd,
-                    sequence.getDataType().getTypeName()
+                        this,
+                        sd,
+                        sequence.getDataType().getTypeName()
                 );
 
                 result.add(new DefaultSequenceDefinition(
-                    sd, sequence.getName(), type));
+                        sd, sequence.getName(), type));
             }
         }
 
@@ -154,6 +167,7 @@ public class CrateDatabase extends AbstractDatabase {
         }
         return result;
     }
+
     @Override
     protected List<EnumDefinition> getEnums0() throws SQLException {
         List<EnumDefinition> result = new ArrayList<EnumDefinition>();
