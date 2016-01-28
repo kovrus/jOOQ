@@ -4,15 +4,20 @@
 package org.jooq.util.crate.information_schema.tables;
 
 
+import java.util.Arrays;
+import java.util.List;
+
+import javax.annotation.Generated;
+
 import org.jooq.Field;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
+import org.jooq.UniqueKey;
 import org.jooq.impl.TableImpl;
 import org.jooq.util.crate.information_schema.InformationSchema;
+import org.jooq.util.crate.information_schema.Keys;
 import org.jooq.util.crate.information_schema.tables.records.TablesRecord;
-
-import javax.annotation.Generated;
 
 
 /**
@@ -28,7 +33,7 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables extends TableImpl<TablesRecord> {
 
-    private static final long serialVersionUID = 2054466321;
+    private static final long serialVersionUID = 221235000;
 
     /**
      * The reference instance of <code>information_schema.tables</code>
@@ -71,7 +76,7 @@ public class Tables extends TableImpl<TablesRecord> {
     /**
      * The column <code>information_schema.tables.partitioned_by</code>.
      */
-    public final TableField<TablesRecord, String> PARTITIONED_BY = createField("partitioned_by", org.jooq.impl.SQLDataType.VARCHAR, this, "");
+    public final TableField<TablesRecord, String[]> PARTITIONED_BY = createField("partitioned_by", org.jooq.impl.SQLDataType.VARCHAR.getArrayDataType(), this, "");
 
     /**
      * The column <code>information_schema.tables.schema_name</code>.
@@ -240,13 +245,28 @@ public class Tables extends TableImpl<TablesRecord> {
         super(alias, null, aliased, parameters, "");
     }
 
-
     /**
      * {@inheritDoc}
      */
     @Override
     public Schema getSchema() {
         return InformationSchema.INFORMATION_SCHEMA;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UniqueKey<TablesRecord> getPrimaryKey() {
+        return Keys.PRIMARY_KEY;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<UniqueKey<TablesRecord>> getKeys() {
+        return Arrays.<UniqueKey<TablesRecord>>asList(Keys.PRIMARY_KEY);
     }
 
     /**

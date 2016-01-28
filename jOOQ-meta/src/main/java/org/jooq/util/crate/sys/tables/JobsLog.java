@@ -5,6 +5,8 @@ package org.jooq.util.crate.sys.tables;
 
 
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -12,7 +14,9 @@ import org.jooq.Field;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
+import org.jooq.UniqueKey;
 import org.jooq.impl.TableImpl;
+import org.jooq.util.crate.sys.Keys;
 import org.jooq.util.crate.sys.Sys;
 import org.jooq.util.crate.sys.tables.records.JobsLogRecord;
 
@@ -30,7 +34,7 @@ import org.jooq.util.crate.sys.tables.records.JobsLogRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JobsLog extends TableImpl<JobsLogRecord> {
 
-    private static final long serialVersionUID = 1265922673;
+    private static final long serialVersionUID = -610188160;
 
     /**
      * The reference instance of <code>sys.jobs_log</code>
@@ -92,13 +96,28 @@ public class JobsLog extends TableImpl<JobsLogRecord> {
         super(alias, null, aliased, parameters, "");
     }
 
-
     /**
      * {@inheritDoc}
      */
     @Override
     public Schema getSchema() {
         return Sys.SYS;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UniqueKey<JobsLogRecord> getPrimaryKey() {
+        return Keys.PRIMARY_KEY;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<UniqueKey<JobsLogRecord>> getKeys() {
+        return Arrays.<UniqueKey<JobsLogRecord>>asList(Keys.PRIMARY_KEY);
     }
 
     /**

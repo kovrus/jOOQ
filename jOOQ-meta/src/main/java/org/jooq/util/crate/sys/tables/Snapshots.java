@@ -4,16 +4,21 @@
 package org.jooq.util.crate.sys.tables;
 
 
+import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.annotation.Generated;
+
 import org.jooq.Field;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
+import org.jooq.UniqueKey;
 import org.jooq.impl.TableImpl;
+import org.jooq.util.crate.sys.Keys;
 import org.jooq.util.crate.sys.Sys;
 import org.jooq.util.crate.sys.tables.records.SnapshotsRecord;
-
-import javax.annotation.Generated;
-import java.sql.Timestamp;
 
 
 /**
@@ -29,7 +34,7 @@ import java.sql.Timestamp;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Snapshots extends TableImpl<SnapshotsRecord> {
 
-    private static final long serialVersionUID = 746048553;
+    private static final long serialVersionUID = -27789859;
 
     /**
      * The reference instance of <code>sys.snapshots</code>
@@ -47,7 +52,7 @@ public class Snapshots extends TableImpl<SnapshotsRecord> {
     /**
      * The column <code>sys.snapshots.concrete_indices</code>.
      */
-    public final TableField<SnapshotsRecord, String> CONCRETE_INDICES = createField("concrete_indices", org.jooq.impl.SQLDataType.VARCHAR, this, "");
+    public final TableField<SnapshotsRecord, String[]> CONCRETE_INDICES = createField("concrete_indices", org.jooq.impl.SQLDataType.VARCHAR.getArrayDataType(), this, "");
 
     /**
      * The column <code>sys.snapshots.finished</code>.
@@ -101,13 +106,28 @@ public class Snapshots extends TableImpl<SnapshotsRecord> {
         super(alias, null, aliased, parameters, "");
     }
 
-
     /**
      * {@inheritDoc}
      */
     @Override
     public Schema getSchema() {
         return Sys.SYS;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UniqueKey<SnapshotsRecord> getPrimaryKey() {
+        return Keys.PRIMARY_KEY;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<UniqueKey<SnapshotsRecord>> getKeys() {
+        return Arrays.<UniqueKey<SnapshotsRecord>>asList(Keys.PRIMARY_KEY);
     }
 
     /**

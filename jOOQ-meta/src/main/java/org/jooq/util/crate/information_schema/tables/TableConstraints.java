@@ -4,6 +4,8 @@
 package org.jooq.util.crate.information_schema.tables;
 
 
+import javax.annotation.Generated;
+
 import org.jooq.Field;
 import org.jooq.Schema;
 import org.jooq.Table;
@@ -11,8 +13,6 @@ import org.jooq.TableField;
 import org.jooq.impl.TableImpl;
 import org.jooq.util.crate.information_schema.InformationSchema;
 import org.jooq.util.crate.information_schema.tables.records.TableConstraintsRecord;
-
-import javax.annotation.Generated;
 
 
 /**
@@ -28,7 +28,7 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TableConstraints extends TableImpl<TableConstraintsRecord> {
 
-    private static final long serialVersionUID = 1891168140;
+    private static final long serialVersionUID = 1803635794;
 
     /**
      * The reference instance of <code>information_schema.table_constraints</code>
@@ -46,7 +46,7 @@ public class TableConstraints extends TableImpl<TableConstraintsRecord> {
     /**
      * The column <code>information_schema.table_constraints.constraint_name</code>.
      */
-    public final TableField<TableConstraintsRecord, String> CONSTRAINT_NAME = createField("constraint_name", org.jooq.impl.SQLDataType.VARCHAR, this, "");
+    public final TableField<TableConstraintsRecord, String[]> CONSTRAINT_NAME = createField("constraint_name", org.jooq.impl.SQLDataType.VARCHAR.getArrayDataType(), this, "");
 
     /**
      * The column <code>information_schema.table_constraints.constraint_type</code>.
@@ -84,7 +84,6 @@ public class TableConstraints extends TableImpl<TableConstraintsRecord> {
     private TableConstraints(String alias, Table<TableConstraintsRecord> aliased, Field<?>[] parameters) {
         super(alias, null, aliased, parameters, "");
     }
-
 
     /**
      * {@inheritDoc}

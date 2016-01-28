@@ -28,7 +28,7 @@ import org.jooq.util.crate.information_schema.tables.records.RoutinesRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Routines extends TableImpl<RoutinesRecord> {
 
-    private static final long serialVersionUID = -1778742652;
+    private static final long serialVersionUID = 614972762;
 
     /**
      * The reference instance of <code>information_schema.routines</code>
@@ -74,7 +74,6 @@ public class Routines extends TableImpl<RoutinesRecord> {
     private Routines(String alias, Table<RoutinesRecord> aliased, Field<?>[] parameters) {
         super(alias, null, aliased, parameters, "");
     }
-
 
     /**
      * {@inheritDoc}

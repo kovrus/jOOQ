@@ -4,14 +4,19 @@
 package org.jooq.util.crate.information_schema.tables;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
+import org.jooq.UniqueKey;
 import org.jooq.impl.TableImpl;
 import org.jooq.util.crate.information_schema.InformationSchema;
+import org.jooq.util.crate.information_schema.Keys;
 import org.jooq.util.crate.information_schema.tables.records.ColumnsRecord;
 
 
@@ -28,7 +33,7 @@ import org.jooq.util.crate.information_schema.tables.records.ColumnsRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Columns extends TableImpl<ColumnsRecord> {
 
-    private static final long serialVersionUID = 209667079;
+    private static final long serialVersionUID = -820617928;
 
     /**
      * The reference instance of <code>information_schema.columns</code>
@@ -100,13 +105,28 @@ public class Columns extends TableImpl<ColumnsRecord> {
         super(alias, null, aliased, parameters, "");
     }
 
-
     /**
      * {@inheritDoc}
      */
     @Override
     public Schema getSchema() {
         return InformationSchema.INFORMATION_SCHEMA;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UniqueKey<ColumnsRecord> getPrimaryKey() {
+        return Keys.PRIMARY_KEY;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<UniqueKey<ColumnsRecord>> getKeys() {
+        return Arrays.<UniqueKey<ColumnsRecord>>asList(Keys.PRIMARY_KEY);
     }
 
     /**

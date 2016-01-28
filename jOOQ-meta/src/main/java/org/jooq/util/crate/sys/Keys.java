@@ -6,6 +6,17 @@ package org.jooq.util.crate.sys;
 
 import javax.annotation.Generated;
 
+import org.jooq.UniqueKey;
+import org.jooq.impl.AbstractKeys;
+import org.jooq.util.crate.sys.tables.Checks;
+import org.jooq.util.crate.sys.tables.Jobs;
+import org.jooq.util.crate.sys.tables.JobsLog;
+import org.jooq.util.crate.sys.tables.Nodes;
+import org.jooq.util.crate.sys.tables.Repositories;
+import org.jooq.util.crate.sys.tables.Shards;
+import org.jooq.util.crate.sys.tables.Snapshots;
+import org.jooq.util.crate.sys.tables.records.NodesRecord;
+
 
 /**
  * A class modelling foreign key relationships between tables of the <code>sys</code> 
@@ -30,6 +41,13 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<NodesRecord> PRIMARY_KEY = UniqueKeys0.PRIMARY_KEY;
+    public static final UniqueKey<NodesRecord> PRIMARY_KEY = UniqueKeys0.PRIMARY_KEY;
+    public static final UniqueKey<NodesRecord> PRIMARY_KEY = UniqueKeys0.PRIMARY_KEY;
+    public static final UniqueKey<NodesRecord> PRIMARY_KEY = UniqueKeys0.PRIMARY_KEY;
+    public static final UniqueKey<NodesRecord> PRIMARY_KEY = UniqueKeys0.PRIMARY_KEY;
+    public static final UniqueKey<NodesRecord> PRIMARY_KEY = UniqueKeys0.PRIMARY_KEY;
+    public static final UniqueKey<NodesRecord> PRIMARY_KEY = UniqueKeys0.PRIMARY_KEY;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -39,4 +57,14 @@ public class Keys {
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
     // -------------------------------------------------------------------------
+
+    private static class UniqueKeys0 extends AbstractKeys {
+        public static final UniqueKey<NodesRecord> PRIMARY_KEY = createUniqueKey(Nodes.NODES, "PRIMARY_KEY", Nodes.NODES.ID, Shards.SHARDS.SCHEMA_NAME, Shards.SHARDS.TABLE_NAME, Shards.SHARDS.ID, Shards.SHARDS.PARTITION_IDENT, Jobs.JOBS.ID, JobsLog.JOBS_LOG.ID, Checks.CHECKS.ID, Repositories.REPOSITORIES.NAME, Snapshots.SNAPSHOTS.NAME, Snapshots.SNAPSHOTS.REPOSITORY);
+        public static final UniqueKey<NodesRecord> PRIMARY_KEY = createUniqueKey(Nodes.NODES, "PRIMARY_KEY", Nodes.NODES.ID, Shards.SHARDS.SCHEMA_NAME, Shards.SHARDS.TABLE_NAME, Shards.SHARDS.ID, Shards.SHARDS.PARTITION_IDENT, Jobs.JOBS.ID, JobsLog.JOBS_LOG.ID, Checks.CHECKS.ID, Repositories.REPOSITORIES.NAME, Snapshots.SNAPSHOTS.NAME, Snapshots.SNAPSHOTS.REPOSITORY);
+        public static final UniqueKey<NodesRecord> PRIMARY_KEY = createUniqueKey(Nodes.NODES, "PRIMARY_KEY", Nodes.NODES.ID, Shards.SHARDS.SCHEMA_NAME, Shards.SHARDS.TABLE_NAME, Shards.SHARDS.ID, Shards.SHARDS.PARTITION_IDENT, Jobs.JOBS.ID, JobsLog.JOBS_LOG.ID, Checks.CHECKS.ID, Repositories.REPOSITORIES.NAME, Snapshots.SNAPSHOTS.NAME, Snapshots.SNAPSHOTS.REPOSITORY);
+        public static final UniqueKey<NodesRecord> PRIMARY_KEY = createUniqueKey(Nodes.NODES, "PRIMARY_KEY", Nodes.NODES.ID, Shards.SHARDS.SCHEMA_NAME, Shards.SHARDS.TABLE_NAME, Shards.SHARDS.ID, Shards.SHARDS.PARTITION_IDENT, Jobs.JOBS.ID, JobsLog.JOBS_LOG.ID, Checks.CHECKS.ID, Repositories.REPOSITORIES.NAME, Snapshots.SNAPSHOTS.NAME, Snapshots.SNAPSHOTS.REPOSITORY);
+        public static final UniqueKey<NodesRecord> PRIMARY_KEY = createUniqueKey(Nodes.NODES, "PRIMARY_KEY", Nodes.NODES.ID, Shards.SHARDS.SCHEMA_NAME, Shards.SHARDS.TABLE_NAME, Shards.SHARDS.ID, Shards.SHARDS.PARTITION_IDENT, Jobs.JOBS.ID, JobsLog.JOBS_LOG.ID, Checks.CHECKS.ID, Repositories.REPOSITORIES.NAME, Snapshots.SNAPSHOTS.NAME, Snapshots.SNAPSHOTS.REPOSITORY);
+        public static final UniqueKey<NodesRecord> PRIMARY_KEY = createUniqueKey(Nodes.NODES, "PRIMARY_KEY", Nodes.NODES.ID, Shards.SHARDS.SCHEMA_NAME, Shards.SHARDS.TABLE_NAME, Shards.SHARDS.ID, Shards.SHARDS.PARTITION_IDENT, Jobs.JOBS.ID, JobsLog.JOBS_LOG.ID, Checks.CHECKS.ID, Repositories.REPOSITORIES.NAME, Snapshots.SNAPSHOTS.NAME, Snapshots.SNAPSHOTS.REPOSITORY);
+        public static final UniqueKey<NodesRecord> PRIMARY_KEY = createUniqueKey(Nodes.NODES, "PRIMARY_KEY", Nodes.NODES.ID, Shards.SHARDS.SCHEMA_NAME, Shards.SHARDS.TABLE_NAME, Shards.SHARDS.ID, Shards.SHARDS.PARTITION_IDENT, Jobs.JOBS.ID, JobsLog.JOBS_LOG.ID, Checks.CHECKS.ID, Repositories.REPOSITORIES.NAME, Snapshots.SNAPSHOTS.NAME, Snapshots.SNAPSHOTS.REPOSITORY);
+    }
 }

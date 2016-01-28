@@ -6,6 +6,13 @@ package org.jooq.util.crate.information_schema;
 
 import javax.annotation.Generated;
 
+import org.jooq.UniqueKey;
+import org.jooq.impl.AbstractKeys;
+import org.jooq.util.crate.information_schema.tables.Columns;
+import org.jooq.util.crate.information_schema.tables.Schemata;
+import org.jooq.util.crate.information_schema.tables.Tables;
+import org.jooq.util.crate.information_schema.tables.records.ColumnsRecord;
+
 
 /**
  * A class modelling foreign key relationships between tables of the <code>information_schema</code> 
@@ -30,6 +37,9 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<ColumnsRecord> PRIMARY_KEY = UniqueKeys0.PRIMARY_KEY;
+    public static final UniqueKey<ColumnsRecord> PRIMARY_KEY = UniqueKeys0.PRIMARY_KEY;
+    public static final UniqueKey<ColumnsRecord> PRIMARY_KEY = UniqueKeys0.PRIMARY_KEY;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -39,4 +49,10 @@ public class Keys {
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
     // -------------------------------------------------------------------------
+
+    private static class UniqueKeys0 extends AbstractKeys {
+        public static final UniqueKey<ColumnsRecord> PRIMARY_KEY = createUniqueKey(Columns.COLUMNS, "PRIMARY_KEY", Columns.COLUMNS.SCHEMA_NAME, Columns.COLUMNS.TABLE_NAME, Columns.COLUMNS.COLUMN_NAME, Schemata.SCHEMATA.SCHEMA_NAME, Tables.TABLES.SCHEMA_NAME, Tables.TABLES.TABLE_NAME);
+        public static final UniqueKey<ColumnsRecord> PRIMARY_KEY = createUniqueKey(Columns.COLUMNS, "PRIMARY_KEY", Columns.COLUMNS.SCHEMA_NAME, Columns.COLUMNS.TABLE_NAME, Columns.COLUMNS.COLUMN_NAME, Schemata.SCHEMATA.SCHEMA_NAME, Tables.TABLES.SCHEMA_NAME, Tables.TABLES.TABLE_NAME);
+        public static final UniqueKey<ColumnsRecord> PRIMARY_KEY = createUniqueKey(Columns.COLUMNS, "PRIMARY_KEY", Columns.COLUMNS.SCHEMA_NAME, Columns.COLUMNS.TABLE_NAME, Columns.COLUMNS.COLUMN_NAME, Schemata.SCHEMATA.SCHEMA_NAME, Tables.TABLES.SCHEMA_NAME, Tables.TABLES.TABLE_NAME);
+    }
 }

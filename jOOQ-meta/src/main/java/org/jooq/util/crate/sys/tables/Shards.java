@@ -4,13 +4,18 @@
 package org.jooq.util.crate.sys.tables;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
+import org.jooq.UniqueKey;
 import org.jooq.impl.TableImpl;
+import org.jooq.util.crate.sys.Keys;
 import org.jooq.util.crate.sys.Sys;
 import org.jooq.util.crate.sys.tables.records.ShardsRecord;
 
@@ -28,7 +33,7 @@ import org.jooq.util.crate.sys.tables.records.ShardsRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Shards extends TableImpl<ShardsRecord> {
 
-    private static final long serialVersionUID = 1931758340;
+    private static final long serialVersionUID = -1870030988;
 
     /**
      * The reference instance of <code>sys.shards</code>
@@ -185,13 +190,28 @@ public class Shards extends TableImpl<ShardsRecord> {
         super(alias, null, aliased, parameters, "");
     }
 
-
     /**
      * {@inheritDoc}
      */
     @Override
     public Schema getSchema() {
         return Sys.SYS;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UniqueKey<ShardsRecord> getPrimaryKey() {
+        return Keys.PRIMARY_KEY;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<UniqueKey<ShardsRecord>> getKeys() {
+        return Arrays.<UniqueKey<ShardsRecord>>asList(Keys.PRIMARY_KEY);
     }
 
     /**

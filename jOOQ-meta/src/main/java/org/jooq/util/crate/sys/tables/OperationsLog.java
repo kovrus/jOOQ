@@ -30,7 +30,7 @@ import org.jooq.util.crate.sys.tables.records.OperationsLogRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class OperationsLog extends TableImpl<OperationsLogRecord> {
 
-    private static final long serialVersionUID = 1323741517;
+    private static final long serialVersionUID = -1330283317;
 
     /**
      * The reference instance of <code>sys.operations_log</code>
@@ -101,7 +101,6 @@ public class OperationsLog extends TableImpl<OperationsLogRecord> {
     private OperationsLog(String alias, Table<OperationsLogRecord> aliased, Field<?>[] parameters) {
         super(alias, null, aliased, parameters, "");
     }
-
 
     /**
      * {@inheritDoc}

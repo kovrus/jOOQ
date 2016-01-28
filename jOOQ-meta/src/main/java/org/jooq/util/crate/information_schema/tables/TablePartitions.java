@@ -28,7 +28,7 @@ import org.jooq.util.crate.information_schema.tables.records.TablePartitionsReco
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TablePartitions extends TableImpl<TablePartitionsRecord> {
 
-    private static final long serialVersionUID = 1927856966;
+    private static final long serialVersionUID = -1862922940;
 
     /**
      * The reference instance of <code>information_schema.table_partitions</code>
@@ -224,7 +224,6 @@ public class TablePartitions extends TableImpl<TablePartitionsRecord> {
     private TablePartitions(String alias, Table<TablePartitionsRecord> aliased, Field<?>[] parameters) {
         super(alias, null, aliased, parameters, "");
     }
-
 
     /**
      * {@inheritDoc}

@@ -5,6 +5,8 @@ package org.jooq.util.crate.sys.tables;
 
 
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -12,7 +14,9 @@ import org.jooq.Field;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
+import org.jooq.UniqueKey;
 import org.jooq.impl.TableImpl;
+import org.jooq.util.crate.sys.Keys;
 import org.jooq.util.crate.sys.Sys;
 import org.jooq.util.crate.sys.tables.records.NodesRecord;
 
@@ -30,7 +34,7 @@ import org.jooq.util.crate.sys.tables.records.NodesRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Nodes extends TableImpl<NodesRecord> {
 
-    private static final long serialVersionUID = -1366791971;
+    private static final long serialVersionUID = -1182936101;
 
     /**
      * The reference instance of <code>sys.nodes</code>
@@ -53,7 +57,7 @@ public class Nodes extends TableImpl<NodesRecord> {
     /**
      * The column <code>sys.nodes.fs['data']</code>.
      */
-    public final TableField<NodesRecord, Object> FS_5b_27DATA_27_5d = createField("fs['data']", org.jooq.impl.DefaultDataType.getDefaultDataType("object_array"), this, "");
+    public final TableField<NodesRecord, Object[]> FS_5b_27DATA_27_5d = createField("fs['data']", org.jooq.impl.SQLDataType.OTHER.getArrayDataType(), this, "");
 
     /**
      * The column <code>sys.nodes.fs['data']['dev']</code>.
@@ -68,7 +72,7 @@ public class Nodes extends TableImpl<NodesRecord> {
     /**
      * The column <code>sys.nodes.fs['disks']</code>.
      */
-    public final TableField<NodesRecord, Object> FS_5b_27DISKS_27_5d = createField("fs['disks']", org.jooq.impl.DefaultDataType.getDefaultDataType("object_array"), this, "");
+    public final TableField<NodesRecord, Object[]> FS_5b_27DISKS_27_5d = createField("fs['disks']", org.jooq.impl.SQLDataType.OTHER.getArrayDataType(), this, "");
 
     /**
      * The column <code>sys.nodes.fs['disks']['available']</code>.
@@ -483,7 +487,7 @@ public class Nodes extends TableImpl<NodesRecord> {
     /**
      * The column <code>sys.nodes.thread_pools</code>.
      */
-    public final TableField<NodesRecord, Object> THREAD_POOLS = createField("thread_pools", org.jooq.impl.DefaultDataType.getDefaultDataType("object_array"), this, "");
+    public final TableField<NodesRecord, Object[]> THREAD_POOLS = createField("thread_pools", org.jooq.impl.SQLDataType.OTHER.getArrayDataType(), this, "");
 
     /**
      * The column <code>sys.nodes.thread_pools['active']</code>.
@@ -562,13 +566,28 @@ public class Nodes extends TableImpl<NodesRecord> {
         super(alias, null, aliased, parameters, "");
     }
 
-
     /**
      * {@inheritDoc}
      */
     @Override
     public Schema getSchema() {
         return Sys.SYS;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UniqueKey<NodesRecord> getPrimaryKey() {
+        return Keys.PRIMARY_KEY;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<UniqueKey<NodesRecord>> getKeys() {
+        return Arrays.<UniqueKey<NodesRecord>>asList(Keys.PRIMARY_KEY);
     }
 
     /**

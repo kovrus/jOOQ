@@ -28,7 +28,7 @@ import org.jooq.util.crate.sys.tables.records.ClusterRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Cluster extends TableImpl<ClusterRecord> {
 
-    private static final long serialVersionUID = 393619361;
+    private static final long serialVersionUID = -1892304257;
 
     /**
      * The reference instance of <code>sys.cluster</code>
@@ -534,7 +534,6 @@ public class Cluster extends TableImpl<ClusterRecord> {
     private Cluster(String alias, Table<ClusterRecord> aliased, Field<?>[] parameters) {
         super(alias, null, aliased, parameters, "");
     }
-
 
     /**
      * {@inheritDoc}
