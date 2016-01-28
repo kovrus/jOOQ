@@ -66,7 +66,6 @@ import java.sql.Timestamp;
     public static final DataType<Boolean>    BOOLEAN                  = new DefaultDataType<Boolean>(SQLDialect.CRATE, SQLDataType.BOOLEAN, "boolean");
     public static final DataType<String>     STRING                   = new DefaultDataType<String>(SQLDialect.CRATE, SQLDataType.VARCHAR, "string");
     public static final DataType<Timestamp>  TIMESTAMP                = new DefaultDataType<Timestamp>(SQLDialect.CRATE, SQLDataType.TIMESTAMP, "timestamp");
-    public static final DataType<byte[]>     BLOB                     = new DefaultDataType<byte[]>(SQLDialect.CRATE, SQLDataType.BLOB, "blob");
 
     public static final DataType<Long>       IP                       = new DefaultDataType<Long>(SQLDialect.CRATE, SQLDataType.BIGINT, "ip");
     public static final DataType<Object>     OBJECT                   = new DefaultDataType<Object>(SQLDialect.CRATE, SQLDataType.OTHER, "object");
